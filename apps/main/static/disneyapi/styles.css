@@ -1,0 +1,52 @@
+*{
+    border: 0;
+    margin: 0;
+}
+
+html{
+    background-color: #FFECD2;
+    height: 100%;
+}
+
+@font-face{
+    font-family: "walt";
+    src: url(walt.ttf),
+    url(walt.eot),
+    url(walt.woff),
+    url(walt.otf)
+}
+
+#wrapper{
+    width: 1000px;
+    height: 850px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+}
+
+button{
+    background-color: black;
+    border: white 1px solid;
+    color: white;
+    font: helvetica;
+    font-size: 1em;
+    font-weight: bold;
+    height: 3em;
+    width: 45em;
+    border-radius: 10px;
+    margin-left: 10.5em;
+}
+
+button:hover{
+    background-color: white;
+    color: black;
+    border: black 1px solid;
+}
+
+h1{
+    font-family: 'walt';
+    font-size: 5em;
+    text-align: center;
+    height: 1.5em;
+}

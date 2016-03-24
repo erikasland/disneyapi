@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="static/disneyapi/styles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.js"></script>
+    <script src="//d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            setInterval(function(){
+                location.reload();
+            }, 60000)
+            var curr_date = new Date().getTime();
+            var prev_date = curr_date - 300000
+            $.ajax({
+              url: 'adddata/' + curr_date + '/' + prev_date + '/' + Math.round(Math.random() * 10),
+              success: function(res){
+                console.log(res.total)
+                var SVG = d3.select("#cir")
+                  .append("svg")
+                  .attr("width", 1000)
+                  .attr("height", 700)
+
+                function buildCircle(data, color, x, y){
+                  SVG.append("circle")
+                    .style("stroke", "black")
+                    .style("fill", color)
+                    .style("opacity", ".5")
+                    .attr("r", (data / 4) + 10)
+                    .attr("cx", x)
+                    .attr("cy", y)
+                }
+                buildCircle(res.total, "teal", 400, 350)
+                setTimeout(function(){buildCircle(res.total, "green", 600, 350)}, 10000)
+              }
+            });
+
+            $('button').click(function(){
+              var submittime = new Date().getTime()
+              $.ajax({
+                url: 'submitted/' + submittime,
+              });
+            });
+        })
+    </script>
+</head>
+<body>
+      <div id='wrapper'>
+        <h1>API: Disney</h1>
+        <button>CLICK ME AND A CIRCLE WILL APPEAR. IT WILL GET BIGGER THE MORE YOU CLICK AND SHRINK IF YOU STOP CLICKING IT AND GIVE IT SOME TIME TO GET SMALLER.</button>
+        <div id='cir'></div>
+        <div id='cir2'></div>
+      </div>
+</body>
+</html>
